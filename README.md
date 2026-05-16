@@ -297,4 +297,5 @@ Automation : n8n
 Frontend : Next.js + shadcn/ui (optionnel)
 
 IA : OpenAI API / LLM local#   p r o j e t _ a p p r e n t i s s a g e  
+ #   p r o j e t _ a n n u e l  
  
