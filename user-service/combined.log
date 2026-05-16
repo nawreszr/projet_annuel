@@ -1807,3 +1807,42 @@
 {"level":"info","message":" User Service running on port 8002"}
 {"level":"info","message":" User Service running on port 8002"}
 {"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:15:22:55 +0000] \"GET /api/auth/me HTTP/1.1\" 401 45 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:15:23:02 +0000] \"GET /api/auth/me HTTP/1.1\" 401 45 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:16:14:43 +0000] \"POST /api/auth/register HTTP/1.1\" 201 637 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:16:23:23 +0000] \"POST /api/auth/login HTTP/1.1\" 401 31 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:16:23:35 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:16:24:08 +0000] \"POST /api/auth/register HTTP/1.1\" 400 59 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:16:24:22 +0000] \"POST /api/auth/register HTTP/1.1\" 201 630 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:16:35:29 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:16:54:12 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:16:54:27 +0000] \"POST /api/auth/login HTTP/1.1\" 200 640 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:18:05:54 +0000] \"PUT /api/auth/profile HTTP/1.1\" 200 372 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:18:24:26 +0000] \"PUT /api/auth/profile HTTP/1.1\" 200 375 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:18:29:47 +0000] \"POST /api/auth/login HTTP/1.1\" 200 650 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [16/May/2026:18:29:54 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}

@@ -140,16 +140,38 @@ router.post('/login', validateLogin, async (req, res) => {
 router.get('/me', authMiddleware.verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json({ user: user.toJSON() });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// @route   PUT /api/auth/profile
+// @desc    Update user profile
+// @access  Private
+router.put('/profile', authMiddleware.verifyToken, async (req, res) => {
+  try {
+    const { firstName, lastName, username } = req.body;
+    
+    const user = await User.findById(req.user.userId);
     
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
+    if (firstName) user.firstName = firstName;
+    if (lastName) user.lastName = lastName;
+    if (username) user.username = username;
+
+    await user.save();
+
     res.json({
+      message: 'Profile updated successfully',
       user: user.toJSON()
     });
   } catch (error) {
-    console.error('Get profile error:', error);
+    console.error('Update profile error:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });

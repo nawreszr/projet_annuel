@@ -33,6 +33,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
 
   minio:
     image: minio/minio
@@ -71,8 +72,6 @@ services:
     restart: always
     ports:
       - "8001:8001"
-    environment:
-      DATABASE_URL: postgresql://admin:postgres123@postgres:5432/courses
     depends_on:
       - postgres
     volumes:
@@ -84,8 +83,6 @@ services:
     restart: always
     ports:
       - "8003:8003"
-    environment:
-      DATABASE_URL: postgresql://admin:postgres123@postgres:5432/analytics
     depends_on:
       - postgres
     volumes:
@@ -97,8 +94,27 @@ services:
     restart: always
     ports:
       - "8004:8004"
+    environment:
+      - GEMINI_API_KEY=AIzaSyDSf4BwTHZCDbjjT7JIiLBu-4RImFHsNzQ
     volumes:
       - ./ai-tutor-service:/app
+
+  learning-portal:
+    build: ./learning-portal
+    container_name: learning_portal
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_USER_SERVICE_URL: http://localhost:8002/api
+      NEXT_PUBLIC_COURSE_SERVICE_URL: http://localhost:8001/api
+    depends_on:
+      - user-service
+      - course-service
+    volumes:
+      - ./learning-portal:/app
+      - /app/node_modules
+      - /app/.next
 
 volumes:
   mongodb_data:

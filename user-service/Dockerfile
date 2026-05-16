@@ -5,8 +5,8 @@ WORKDIR /app
 # Copier les fichiers de dépendances
 COPY package*.json ./
 
-# Installer les dépendances
-RUN npm install --production
+# Installer toutes les dépendances (y compris dev pour être sûr)
+RUN npm install
 
 # Copier le code source
 COPY . .
@@ -14,5 +14,5 @@ COPY . .
 # Exposer le port
 EXPOSE 8002
 
-# Commande de démarrage
-CMD ["npm", "start"]
+# Utiliser node directement pour éviter l'erreur nodemon
+CMD ["node", "src/index.js"]
