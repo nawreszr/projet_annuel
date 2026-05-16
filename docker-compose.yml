@@ -1,0 +1,107 @@
+services:
+  # Bases de données
+  mongodb:
+    image: mongo:6
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: mongodb123
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: learning_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minio123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+  # Microservices
+  user-service:
+    build: ./user-service
+    container_name: user_service
+    restart: always
+    ports:
+      - "8002:8002"
+    environment:
+      MONGODB_URI: mongodb://admin:mongodb123@mongodb:27017/users?authSource=admin
+      JWT_SECRET: secret123
+      PORT: 8002
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./user-service:/app
+      - /app/node_modules
+
+  course-service:
+    build: ./course-service
+    container_name: course_service
+    restart: always
+    ports:
+      - "8001:8001"
+    environment:
+      DATABASE_URL: postgresql://admin:postgres123@postgres:5432/courses
+    depends_on:
+      - postgres
+    volumes:
+      - ./course-service:/app
+
+  analytics-service:
+    build: ./analytics-service
+    container_name: analytics_service
+    restart: always
+    ports:
+      - "8003:8003"
+    environment:
+      DATABASE_URL: postgresql://admin:postgres123@postgres:5432/analytics
+    depends_on:
+      - postgres
+    volumes:
+      - ./analytics-service:/app
+
+  ai-tutor-service:
+    build: ./ai-tutor-service
+    container_name: ai_tutor_service
+    restart: always
+    ports:
+      - "8004:8004"
+    volumes:
+      - ./ai-tutor-service:/app
+
+volumes:
+  mongodb_data:
+  redis_data:
+  postgres_data:
+  minio_data:
