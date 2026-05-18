@@ -51,17 +51,17 @@ export default function Sidebar() {
   const isInstructor = role === 'instructor' || role === 'admin'
 
   const studentNav = [
-    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-    { name: 'Browse Courses', href: '/courses', icon: BookOpen },
-    { name: 'AI Tutor', href: '/ai-tutor', icon: Bot },
-    { name: 'My Profile', href: '/profile', icon: Users },
+    { name: 'Dashboard', href: '/student/dashboard', icon: LayoutDashboard },
+    { name: 'Browse Courses', href: '/student/courses', icon: BookOpen },
+    { name: 'AI Tutor', href: '/student/ai-tutor', icon: Bot },
+    { name: 'My Profile', href: '/student/profile', icon: Users },
   ]
 
   const instructorNav = [
     { name: 'Instructor Studio', href: '/instructor/dashboard', icon: BarChart3 },
     { name: 'Manage Courses', href: '/instructor/courses', icon: BookOpen },
     { name: 'Students', href: '/instructor/students', icon: Users },
-    { name: 'Profile', href: '/profile', icon: Users },
+    { name: 'Profile', href: '/instructor/profile', icon: Users },
   ]
 
   const navigation = isInstructor ? instructorNav : studentNav

@@ -26,6 +26,9 @@ export const authApi = {
     if (response.data.token) {
       localStorage.setItem('nexus_token', response.data.token);
       localStorage.setItem('nexus_user', JSON.stringify(response.data.user));
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('userUpdated'));
+      }
     }
     return response.data;
   },
@@ -34,12 +37,18 @@ export const authApi = {
     if (response.data.token) {
       localStorage.setItem('nexus_token', response.data.token);
       localStorage.setItem('nexus_user', JSON.stringify(response.data.user));
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('userUpdated'));
+      }
     }
     return response.data;
   },
   logout: () => {
     localStorage.removeItem('nexus_token');
     localStorage.removeItem('nexus_user');
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('userUpdated'));
+    }
   },
   getMe: async () => {
     const response = await api.get(`${USER_SERVICE_URL}/auth/me`);
@@ -51,6 +60,10 @@ export const authApi = {
       localStorage.setItem('nexus_user', JSON.stringify(response.data.user));
     }
     return response.data.user;
+  },
+  getUsersBatch: async (userIds: string[]) => {
+    const response = await api.post(`${USER_SERVICE_URL}/users/batch`, { userIds });
+    return response.data.users;
   }
 };
 
@@ -110,6 +123,22 @@ export const courseApi = {
   addLesson: async (courseId: number, lessonData: any) => {
     const response = await api.post(`${COURSE_SERVICE_URL}/courses/${courseId}/lessons`, lessonData);
     return response.data;
+  },
+  getCourse: async (courseId: number) => {
+    const response = await api.get(`${COURSE_SERVICE_URL}/courses/${courseId}`);
+    return response.data;
+  },
+  updateCourse: async (courseId: number, courseData: any) => {
+    const response = await api.put(`${COURSE_SERVICE_URL}/courses/${courseId}`, courseData);
+    return response.data;
+  },
+  deleteCourse: async (courseId: number) => {
+    const response = await api.delete(`${COURSE_SERVICE_URL}/courses/${courseId}`);
+    return response.data;
+  },
+  getInstructorEnrollments: async (instructorId: string) => {
+    const response = await api.get(`${COURSE_SERVICE_URL}/enrollments/instructor/${instructorId}`);
+    return response.data.enrollments;
   }
 };
 

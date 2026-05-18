@@ -1846,3 +1846,25 @@
 {"level":"info","message":" User Service running on port 8002"}
 {"level":"info","message":" User Service running on port 8002"}
 {"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:11:35:01 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:11:40:02 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:11:40:36 +0000] \"POST /api/auth/login HTTP/1.1\" 200 650 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:34:15 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":" User Service running on port 8002"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:39:55 +0000] \"POST /api/auth/login HTTP/1.1\" 200 650 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:44:06 +0000] \"POST /api/users/batch HTTP/1.1\" 200 180 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:46:05 +0000] \"POST /api/users/batch HTTP/1.1\" 200 180 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:46:28 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:49:32 +0000] \"POST /api/auth/login HTTP/1.1\" 200 650 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:49:43 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:49:50 +0000] \"POST /api/auth/login HTTP/1.1\" 200 650 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:56:35 +0000] \"POST /api/users/batch HTTP/1.1\" 200 180 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:56:45 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:57:07 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:57:44 +0000] \"POST /api/auth/login HTTP/1.1\" 200 647 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}
+{"level":"info","message":"::ffff:172.18.0.1 - - [18/May/2026:12:57:54 +0000] \"POST /api/auth/login HTTP/1.1\" 200 650 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0\""}

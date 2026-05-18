@@ -146,6 +146,28 @@ def get_courses(instructor_id: str = None, user_id: str = None, enrolled_only: b
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/api/courses/{course_id}")
+def get_course(course_id: int, db: Session = Depends(get_db)):
+    course = db.query(Course).filter(Course.id == course_id).first()
+    if not course:
+        raise HTTPException(status_code=404, detail="Course not found")
+    
+    lessons_count = db.query(Lesson).filter(Lesson.course_id == course.id).count()
+    
+    return {
+        "id": course.id,
+        "title": course.title,
+        "description": course.description,
+        "price": course.price,
+        "instructor": course.instructor,
+        "instructor_id": course.instructor_id,
+        "category": course.category,
+        "level": course.level,
+        "duration": course.duration,
+        "is_published": course.is_published,
+        "lessons_count": lessons_count
+    }
+
 @app.post("/api/enroll")
 def enroll_in_course(enroll_data: dict, db: Session = Depends(get_db)):
     try:
@@ -245,3 +267,74 @@ def add_lesson(course_id: int, lesson_data: dict, db: Session = Depends(get_db))
     db.commit()
     db.refresh(db_lesson)
     return db_lesson
+
+@app.put("/api/courses/{course_id}")
+def update_course(course_id: int, course_data: dict, db: Session = Depends(get_db)):
+    db_course = db.query(Course).filter(Course.id == course_id).first()
+    if not db_course:
+        raise HTTPException(status_code=404, detail="Course not found")
+    
+    if "title" in course_data:
+        db_course.title = course_data["title"]
+    if "description" in course_data:
+        db_course.description = course_data["description"]
+    if "price" in course_data:
+        db_course.price = float(course_data["price"])
+    if "category" in course_data:
+        db_course.category = course_data["category"]
+    if "level" in course_data:
+        db_course.level = course_data["level"]
+    if "duration" in course_data:
+        db_course.duration = int(course_data["duration"])
+    if "is_published" in course_data:
+        db_course.is_published = bool(course_data["is_published"])
+        
+    db.commit()
+    db.refresh(db_course)
+    return db_course
+
+@app.delete("/api/courses/{course_id}")
+def delete_course(course_id: int, db: Session = Depends(get_db)):
+    db_course = db.query(Course).filter(Course.id == course_id).first()
+    if not db_course:
+        raise HTTPException(status_code=404, detail="Course not found")
+    
+    try:
+        # Delete dependent data
+        db.query(UserProgress).filter(UserProgress.course_id == course_id).delete()
+        db.query(Enrollment).filter(Enrollment.course_id == course_id).delete()
+        db.query(Lesson).filter(Lesson.course_id == course_id).delete()
+        
+        # Delete the course itself
+        db.delete(db_course)
+        db.commit()
+        return {"message": "Course deleted successfully"}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/enrollments/instructor/{instructor_id}")
+def get_instructor_enrollments(instructor_id: str, db: Session = Depends(get_db)):
+    try:
+        # Join Course and Enrollment to find students enrolled in the instructor's courses
+        enrollments = db.query(Enrollment, Course).join(
+            Course, Enrollment.course_id == Course.id
+        ).filter(
+            Course.instructor_id == instructor_id
+        ).all()
+        
+        results = []
+        for enrollment, course in enrollments:
+            results.append({
+                "enrollment_id": enrollment.id,
+                "user_id": enrollment.user_id,
+                "enrolled_at": enrollment.enrolled_at.isoformat() if enrollment.enrolled_at else None,
+                "course_id": course.id,
+                "course_title": course.title,
+                "course_category": course.category
+            })
+            
+        return {"enrollments": results}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+

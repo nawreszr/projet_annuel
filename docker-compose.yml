@@ -95,7 +95,7 @@ services:
     ports:
       - "8004:8004"
     environment:
-      - GEMINI_API_KEY=AIzaSyDSf4BwTHZCDbjjT7JIiLBu-4RImFHsNzQ
+      - GEMINI_API_KEY=AIzaSyBjWzaWWrxHsopwbnmmp_W1XFwz9gKpxmM
     volumes:
       - ./ai-tutor-service:/app
 

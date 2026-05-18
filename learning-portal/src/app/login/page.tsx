@@ -23,7 +23,7 @@ export default function LoginPage() {
       if (data.user.role === 'instructor') {
         router.push('/instructor/dashboard')
       } else {
-        router.push('/dashboard')
+        router.push('/student/dashboard')
       }
     } catch (err: any) {
       setError(err.response?.data?.error || 'Failed to login')

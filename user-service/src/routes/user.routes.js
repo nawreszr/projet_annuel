@@ -37,6 +37,31 @@ router.get('/',
   }
 );
 
+// @route   POST /api/users/batch
+// @desc    Get user profiles for a batch of IDs (accessible by instructors/admins)
+// @access  Private
+router.post('/batch', authMiddleware.verifyToken, async (req, res) => {
+  try {
+    const { userIds } = req.body;
+    if (!Array.isArray(userIds)) {
+      return res.status(400).json({ error: 'userIds must be an array' });
+    }
+    
+    // Check if the requester is an instructor or admin
+    if (req.user.role !== 'instructor' && req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Not authorized to view student profiles' });
+    }
+    
+    const users = await User.find({ _id: { $in: userIds } })
+      .select('firstName lastName username email profileImage role');
+      
+    res.json({ users });
+  } catch (error) {
+    console.error('Batch get users error:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 // @route   GET /api/users/:id
 // @desc    Get user by ID
 // @access  Private
