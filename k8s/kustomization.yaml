@@ -1,0 +1,38 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: learning-portal
+
+resources:
+  # Global Configuration
+  - global/configmap.yaml
+  - global/secret.yaml
+
+  # Databases (StatefulSets)
+  - postgres/configmap.yaml
+  - postgres/statefulset.yaml
+  - postgres/service.yaml
+  - mongodb/statefulset.yaml
+  - mongodb/service.yaml
+  - redis/statefulset.yaml
+  - redis/service.yaml
+  - minio/statefulset.yaml
+  - minio/service.yaml
+
+  # Backend Services (Deployments & Services)
+  - user-service/deployment.yaml
+  - user-service/service.yaml
+  - course-service/deployment.yaml
+  - course-service/service.yaml
+  - analytics-service/deployment.yaml
+  - analytics-service/service.yaml
+  - ai-tutor-service/deployment.yaml
+  - ai-tutor-service/service.yaml
+
+  # Frontend App (Deployment & Service)
+  - learning-portal/deployment.yaml
+  - learning-portal/service.yaml
+
+  # API Gateway (Deployment, Service & ConfigMap)
+  - nginx-gateway/configmap.yaml
+  - nginx-gateway/deployment.yaml
+  - nginx-gateway/service.yaml

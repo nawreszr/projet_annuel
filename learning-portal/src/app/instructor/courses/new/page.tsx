@@ -12,7 +12,8 @@ import {
   DollarSign, 
   Layout, 
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Video
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -28,7 +29,8 @@ export default function CreateCoursePage() {
     price: '',
     duration: '',
     category: 'Technology',
-    level: 'Beginner'
+    level: 'Beginner',
+    video_url: ''
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -176,6 +178,20 @@ export default function CreateCoursePage() {
                 </div>
               </div>
             </label>
+
+            <div className="space-y-2 pt-4 border-t border-white/5">
+              <label className="text-sm font-medium text-slate-300">Course Preview Video URL (optional)</label>
+              <div className="relative">
+                <Video className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <input 
+                  type="text" 
+                  value={formData.video_url}
+                  onChange={(e) => setFormData({...formData, video_url: e.target.value})}
+                  placeholder="https://..."
+                  className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-white text-sm"
+                />
+              </div>
+            </div>
           </div>
         </div>
 

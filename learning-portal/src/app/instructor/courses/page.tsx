@@ -36,7 +36,8 @@ export default function ManageCoursesPage() {
     price: '',
     duration: '',
     category: 'Technology',
-    level: 'Beginner'
+    level: 'Beginner',
+    video_url: ''
   })
   const [editLoading, setEditLoading] = useState(false)
 
@@ -84,7 +85,8 @@ export default function ManageCoursesPage() {
       price: course.price?.toString() || '',
       duration: course.duration?.toString() || '',
       category: course.category || 'Technology',
-      level: course.level || 'Beginner'
+      level: course.level || 'Beginner',
+      video_url: course.video_url || ''
     })
   }
 
@@ -434,6 +436,20 @@ export default function ManageCoursesPage() {
                         className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-white"
                       />
                     </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-300">Course Preview Video URL (optional)</label>
+                  <div className="relative">
+                    <Video className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <input 
+                      type="text" 
+                      value={editFormData.video_url}
+                      onChange={(e) => setEditFormData({...editFormData, video_url: e.target.value})}
+                      placeholder="https://..."
+                      className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-white text-sm"
+                    />
                   </div>
                 </div>
 

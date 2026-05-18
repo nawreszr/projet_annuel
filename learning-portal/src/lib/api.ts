@@ -1,7 +1,16 @@
 import axios from 'axios';
 
-const USER_SERVICE_URL = 'http://localhost:8002/api';
-const COURSE_SERVICE_URL = 'http://localhost:8001/api';
+const isServer = typeof window === 'undefined';
+let GATEWAY_URL = '';
+
+if (isServer) {
+  GATEWAY_URL = process.env.INTERNAL_GATEWAY_URL || 'http://nginx-gateway';
+} else {
+  GATEWAY_URL = window.location.port === '3000' ? 'http://localhost' : '';
+}
+
+const USER_SERVICE_URL = `${GATEWAY_URL}/api`;
+const COURSE_SERVICE_URL = `${GATEWAY_URL}/api`;
 
 const api = axios.create({
   headers: {
@@ -142,7 +151,7 @@ export const courseApi = {
   }
 };
 
-const AI_SERVICE_URL = 'http://localhost:8004/api/ai';
+const AI_SERVICE_URL = `${GATEWAY_URL}/api/ai`;
 
 export const aiApi = {
   ask: async (question: string) => {

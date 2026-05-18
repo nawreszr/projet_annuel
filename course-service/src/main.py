@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import create_engine, Column, Integer, String, Float, Text, Boolean, ForeignKey, DateTime, UniqueConstraint
+from sqlalchemy import create_engine, Column, Integer, String, Float, Text, Boolean, ForeignKey, DateTime, UniqueConstraint, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 from datetime import datetime
@@ -28,6 +28,7 @@ class Course(Base):
     level = Column(String)
     duration = Column(Integer)
     is_published = Column(Boolean, default=True)
+    video_url = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
 class Lesson(Base):
@@ -58,6 +59,14 @@ class UserProgress(Base):
     __table_args__ = (UniqueConstraint('user_id', 'lesson_id', name='_user_lesson_uc'),)
 
 # On force la création des tables au démarrage
+try:
+    with engine.connect() as conn:
+        conn.execute(text("ALTER TABLE courses ADD COLUMN IF NOT EXISTS video_url VARCHAR(255);"))
+        conn.commit()
+    print("Database columns migrated successfully")
+except Exception as migration_error:
+    print(f"Migration error or column already exists: {migration_error}")
+
 try:
     Base.metadata.create_all(bind=engine)
     print("Tables created successfully")
@@ -136,6 +145,7 @@ def get_courses(instructor_id: str = None, user_id: str = None, enrolled_only: b
                 "level": course.level,
                 "duration": course.duration,
                 "is_published": course.is_published,
+                "video_url": course.video_url,
                 "lessons_count": lessons_count,
                 "is_enrolled": course.id in user_enrollments,
                 "progress_percentage": progress_percentage
@@ -165,6 +175,7 @@ def get_course(course_id: int, db: Session = Depends(get_db)):
         "level": course.level,
         "duration": course.duration,
         "is_published": course.is_published,
+        "video_url": course.video_url,
         "lessons_count": lessons_count
     }
 
@@ -222,7 +233,8 @@ def create_course(course_data: dict, db: Session = Depends(get_db)):
         instructor_id=course_data.get("instructor_id"),
         category=course_data.get("category"),
         level=course_data.get("level"),
-        duration=int(course_data.get("duration", 0))
+        duration=int(course_data.get("duration", 0)),
+        video_url=course_data.get("video_url")
     )
     db.add(db_course)
     db.commit()
@@ -288,6 +300,8 @@ def update_course(course_id: int, course_data: dict, db: Session = Depends(get_d
         db_course.duration = int(course_data["duration"])
     if "is_published" in course_data:
         db_course.is_published = bool(course_data["is_published"])
+    if "video_url" in course_data:
+        db_course.video_url = course_data["video_url"]
         
     db.commit()
     db.refresh(db_course)

@@ -111,10 +111,19 @@ services:
     depends_on:
       - user-service
       - course-service
-    volumes:
-      - ./learning-portal:/app
-      - /app/node_modules
-      - /app/.next
+
+  nginx-gateway:
+    build: ./nginx-gateway
+    container_name: nginx_gateway
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - learning-portal
+      - user-service
+      - course-service
+      - analytics-service
+      - ai-tutor-service
 
 volumes:
   mongodb_data:

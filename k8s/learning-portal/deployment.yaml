@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: learning-portal
+  namespace: learning-portal
+  labels:
+    app: learning-portal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: learning-portal
+  template:
+    metadata:
+      labels:
+        app: learning-portal
+    spec:
+      containers:
+      - name: learning-portal
+        image: nawreszarrouki/learning-portal:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+          name: http
+        env:
+        - name: NEXT_PUBLIC_USER_SERVICE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: global-configmap
+              key: NEXT_PUBLIC_USER_SERVICE_URL
+        - name: NEXT_PUBLIC_COURSE_SERVICE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: global-configmap
+              key: NEXT_PUBLIC_COURSE_SERVICE_URL
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 15
+          periodSeconds: 15
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "1024Mi"
+          requests:
+            cpu: "200m"
+            memory: "512Mi"

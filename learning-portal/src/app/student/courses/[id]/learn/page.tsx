@@ -261,10 +261,26 @@ export default function CoursePlayerPage() {
                 className="w-full h-full"
                 allowFullScreen
               ></iframe>
+            ) : course?.video_url ? (
+               <iframe 
+                src={course.video_url.includes('youtube.com') 
+                  ? course.video_url.replace('watch?v=', 'embed/') 
+                  : course.video_url} 
+                className="w-full h-full"
+                allowFullScreen
+              ></iframe>
             ) : (
               <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-600">
                 <Video className="w-20 h-20 mb-4 opacity-20" />
                 <p className="text-sm font-medium">No video available for this lesson</p>
+              </div>
+            )}
+
+            {/* Course Preview Badge Overlay */}
+            {!currentLesson?.video_url && course?.video_url && (
+              <div className="absolute top-4 left-4 bg-blue-600/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] font-bold text-white uppercase tracking-wider shadow-lg flex items-center gap-1.5 z-10 animate-pulse">
+                <Sparkles className="w-3.5 h-3.5" />
+                Course Preview
               </div>
             )}
           </div>
